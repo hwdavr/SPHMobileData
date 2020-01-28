@@ -8,7 +8,11 @@
 
 import Foundation
 
-class DefaultMobileDataRepository {
+protocol MobileDataRepository {
+    func mobileData(_ completion: @escaping (Result<[YearMobileData], Error>) -> Void)
+}
+
+class DefaultMobileDataRepository: MobileDataRepository {
     private let apiService: NetworkService!
     private let storage: MobileDataStorage!
     
@@ -17,7 +21,7 @@ class DefaultMobileDataRepository {
         self.storage = storage
     }
     
-    func mobileDataDrive(_ completion: @escaping (Result<[YearMobileData], Error>) -> Void) {
+    func mobileData(_ completion: @escaping (Result<[YearMobileData], Error>) -> Void) {
         apiService.fetchMobileData() { [weak self] result in
             switch result {
             case .success(let mobileData):

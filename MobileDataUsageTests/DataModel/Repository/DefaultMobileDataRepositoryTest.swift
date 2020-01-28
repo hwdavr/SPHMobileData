@@ -46,9 +46,8 @@ class DefaultMobileDataRepositoryTest: XCTestCase {
     }
 
     func testMobileDataDrive() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        repository.mobileDataDrive { (result) in
+        let expectation = XCTestExpectation(description: "Start Test")
+        repository.mobileData { (result) in
             switch result {
             case .success(let data):
                 XCTAssertTrue(data.count == 2)
@@ -59,6 +58,8 @@ class DefaultMobileDataRepositoryTest: XCTestCase {
                 assertionFailure()
                 break
             }
+            expectation.fulfill()
         }
+        wait(for: [expectation], timeout: 10.0)
     }
 }

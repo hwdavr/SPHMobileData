@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -39,6 +39,11 @@
 		848318FA23E0822400206B2F /* UserDefaultStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848318F923E0822400206B2F /* UserDefaultStorageTest.swift */; };
 		848318FD23E086F400206B2F /* DefaultMobileDataRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848318FC23E086F400206B2F /* DefaultMobileDataRepositoryTest.swift */; };
 		8483190023E08CBA00206B2F /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848318FF23E08CBA00206B2F /* TestConstants.swift */; };
+		8483190523E08F2B00206B2F /* MobileDataTableViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8483190423E08F2B00206B2F /* MobileDataTableViewModelTest.swift */; };
+		8483190623E0902100206B2F /* MobileDataTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841FB94823CF509C00A51A1C /* MobileDataTableViewModel.swift */; };
+		8483190723E0902C00206B2F /* MobileDataTableItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841FB94C23CF523900A51A1C /* MobileDataTableItemViewModel.swift */; };
+		8483190823E0912D00206B2F /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848318AB23DC835A00206B2F /* ViewModelType.swift */; };
+		8483190923E0913000206B2F /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848318ED23DF2BAD00206B2F /* Observable.swift */; };
 		E44878C0136BC0DD06EAC550 /* Pods_MobileDataUsageTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D02551269CB186833F9F15B /* Pods_MobileDataUsageTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +103,7 @@
 		848318F923E0822400206B2F /* UserDefaultStorageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultStorageTest.swift; sourceTree = "<group>"; };
 		848318FC23E086F400206B2F /* DefaultMobileDataRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMobileDataRepositoryTest.swift; sourceTree = "<group>"; };
 		848318FF23E08CBA00206B2F /* TestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
+		8483190423E08F2B00206B2F /* MobileDataTableViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileDataTableViewModelTest.swift; sourceTree = "<group>"; };
 		84D0051863C237E14573A214 /* Pods-MobileDataUsageTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileDataUsageTests.release.xcconfig"; path = "Target Support Files/Pods-MobileDataUsageTests/Pods-MobileDataUsageTests.release.xcconfig"; sourceTree = "<group>"; };
 		88C47FDD06FD19AE0DDE4A61 /* Pods-MobileDataUsageTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileDataUsageTests.debug.xcconfig"; path = "Target Support Files/Pods-MobileDataUsageTests/Pods-MobileDataUsageTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C6BB9722968983D6F1AF8C3A /* Pods_MobileDataUsage_MobileDataUsageUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileDataUsage_MobileDataUsageUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,6 +196,7 @@
 		841FB92623CF4AC000A51A1C /* MobileDataUsageTests */ = {
 			isa = PBXGroup;
 			children = (
+				8483190123E08E9300206B2F /* Presentation */,
 				848318FE23E08CA300206B2F /* Utils */,
 				848318CB23DF08CC00206B2F /* DataModel */,
 				841FB92723CF4AC000A51A1C /* MobileDataUsageTests.swift */,
@@ -338,6 +345,30 @@
 				848318FF23E08CBA00206B2F /* TestConstants.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		8483190123E08E9300206B2F /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				8483190223E08F0100206B2F /* MobileData */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		8483190223E08F0100206B2F /* MobileData */ = {
+			isa = PBXGroup;
+			children = (
+				8483190323E08F0A00206B2F /* ViewModel */,
+			);
+			path = MobileData;
+			sourceTree = "<group>";
+		};
+		8483190323E08F0A00206B2F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8483190423E08F2B00206B2F /* MobileDataTableViewModelTest.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		FEDA8B7F31E895AC968A5269 /* Frameworks */ = {
@@ -579,13 +610,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8483190923E0913000206B2F /* Observable.swift in Sources */,
 				848318DC23DF0FC900206B2F /* UserDefaultStorage.swift in Sources */,
 				848318DF23DF0FD100206B2F /* YearMobileData.swift in Sources */,
+				8483190723E0902C00206B2F /* MobileDataTableItemViewModel.swift in Sources */,
 				8483190023E08CBA00206B2F /* TestConstants.swift in Sources */,
 				848318DB23DF0FC600206B2F /* DefaultMobileDataRepository.swift in Sources */,
 				848318FD23E086F400206B2F /* DefaultMobileDataRepositoryTest.swift in Sources */,
+				8483190623E0902100206B2F /* MobileDataTableViewModel.swift in Sources */,
 				848318DD23DF0FCC00206B2F /* MobileDataStorage.swift in Sources */,
+				8483190823E0912D00206B2F /* ViewModelType.swift in Sources */,
 				848318DE23DF0FCF00206B2F /* NetworkApi.swift in Sources */,
+				8483190523E08F2B00206B2F /* MobileDataTableViewModelTest.swift in Sources */,
 				848318FA23E0822400206B2F /* UserDefaultStorageTest.swift in Sources */,
 				841FB92823CF4AC000A51A1C /* MobileDataUsageTests.swift in Sources */,
 				848318CE23DF08FD00206B2F /* NetworkApiTest.swift in Sources */,

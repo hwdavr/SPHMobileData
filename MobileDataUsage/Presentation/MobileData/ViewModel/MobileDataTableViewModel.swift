@@ -9,7 +9,7 @@
 import Foundation
 
 class MobileDataTableViewModel: ViewModelType {
-    let repository: DefaultMobileDataRepository!
+    let repository: MobileDataRepository!
     
     struct Input {
     }
@@ -18,13 +18,13 @@ class MobileDataTableViewModel: ViewModelType {
         let mobileDataItems: Observable<[MobileDataTableItemViewModel]> = Observable([])
     }
     
-    init(_ repo: DefaultMobileDataRepository) {
+    init(_ repo: MobileDataRepository) {
         self.repository = repo
     }
     
     func transform(input: MobileDataTableViewModel.Input?) -> MobileDataTableViewModel.Output {
         let output = Output()
-        repository.mobileDataDrive() { [weak self] result in
+        repository.mobileData() { [weak self] result in
             switch result {
             case .success(let mobileData):
                 output.mobileDataItems.value = mobileData.map {
