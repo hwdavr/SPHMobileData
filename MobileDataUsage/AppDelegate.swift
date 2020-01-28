@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         
         if let window = window {
-            let viewModel = MobileDataTableViewModel()
+            let respository = DefaultMobileDataRepository(apiService: NetworkApi(), storage: UserDefaultsStorage())
+            let viewModel = MobileDataTableViewModel(respository)
             let viewController = MobileDataTableViewController.build(with: viewModel)
             
             window.rootViewController = UINavigationController(rootViewController: viewController)

@@ -8,16 +8,36 @@
 
 import Foundation
 
-class MobileDataTableViewModel {
+class MobileDataTableViewModel: ViewModelType {
+    let repository: DefaultMobileDataRepository!
     
-    private(set) var mobileData: [MobileData] = [MobileData]()
+    struct Input {
+    }
     
-    init() {
-        mobileData.append(MobileData("2004-Q3", "0.000384"))
-        mobileData.append(MobileData("2004-Q2", "0.000384"))
-        mobileData.append(MobileData("2004-Q1", "0.000484"))
-        mobileData.append(MobileData("2003-Q3", "0.000584"))
-        mobileData.append(MobileData("2003-Q2", "0.000684"))
+    struct Output {
+        let mobileDataItems: Observable<[MobileDataTableItemViewModel]> = Observable([])
+    }
+    
+    init(_ repo: DefaultMobileDataRepository) {
+        self.repository = repo
+    }
+    
+    func transform(input: MobileDataTableViewModel.Input?) -> MobileDataTableViewModel.Output {
+        let output = Output()
+        repository.mobileDataDrive() { [weak self] result in
+            switch result {
+            case .success(let mobileData):
+                output.mobileDataItems.value = mobileData.map {
+                    MobileDataTableItemViewModel($0.year, $0.volume.description, $0.dropped)
+                }
+                break
+            case .failure(let _):
+                break
+            }
+            
+        }
+        
+        return output
     }
 }
 

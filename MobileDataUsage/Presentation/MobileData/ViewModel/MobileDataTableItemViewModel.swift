@@ -9,5 +9,13 @@
 import Foundation
 
 class MobileDataTableItemViewModel {
+    var year: String
+    var volume: String
+    var decreased: Bool
     
+    init(_ year: String, _ volume: String, _ decreased: Bool) {
+        self.year = year
+        self.volume = volume
+        self.decreased = decreased
+    }
 }
