@@ -11,3 +11,7 @@ import Foundation
 
 let MockMobileData = YearMobileData("2010", 0.03, true)
 
+class TestError: Error {
+    
+}
+

@@ -23,13 +23,42 @@ class MobileDataUsageUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
+    func testMobileDataUsage() {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
 
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        // Assert that we are displaying the tableview
+        let tableView = app.tables["mobileDataTable"]
+        XCTAssertTrue(tableView.exists, "The tableview exists")
+        // Get an array of cells
+        let tableCells = tableView.cells
+
+        if tableCells.count > 0 {
+            let count: Int = (tableCells.count - 1)
+         
+            let promise = expectation(description: "Wait for table cells")
+            var visibleCount = 0
+         
+            for i in stride(from: 0, to: count , by: 1) {
+                // Grab the cell and verify that it exists
+                let tableCell = tableCells.element(boundBy: i)
+                XCTAssertTrue(tableCell.exists, "The \(i) cell is in place on the table")
+
+                if tableCell.buttons["button-decreasing"].exists {
+                    visibleCount += 1
+                }
+         
+                if i == (count - 1) {
+                    promise.fulfill()
+                }
+            }
+            waitForExpectations(timeout: 20, handler: nil)
+            XCTAssertTrue(true, "Finished validating the table cells")
+            XCTAssertEqual(visibleCount, 3)
+        } else {
+            XCTAssert(false, "Was not able to find any table cells")
+        }
     }
 
     func testLaunchPerformance() {

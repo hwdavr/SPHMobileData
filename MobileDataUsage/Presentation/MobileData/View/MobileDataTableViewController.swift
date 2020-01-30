@@ -29,6 +29,8 @@ class MobileDataTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.items = []
+        tableView.accessibilityIdentifier = "mobileDataTable"
+        
         tableView.estimatedRowHeight = MobileDataTableItemCell.HEIGHT
         tableView.rowHeight = MobileDataTableItemCell.HEIGHT
         

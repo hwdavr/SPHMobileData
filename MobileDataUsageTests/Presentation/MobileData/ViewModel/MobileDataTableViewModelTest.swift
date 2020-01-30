@@ -10,9 +10,15 @@ import XCTest
 
 class MobileDataTableViewModelTest: XCTestCase {
     
-    class MobileDataRepositoryMock: MobileDataRepository {
+    class MobileDataRepositorySuccessMock: MobileDataRepository {
         func mobileData(_ completion: @escaping (Result<[YearMobileData], Error>) -> Void) {
             completion(.success([MockMobileData, MockMobileData]))
+        }
+    }
+    
+    class MobileDataRepositoryFailedMock: MobileDataRepository {
+        func mobileData(_ completion: @escaping (Result<[YearMobileData], Error>) -> Void) {
+            completion(.failure(TestError()))
         }
     }
     
@@ -20,14 +26,14 @@ class MobileDataTableViewModelTest: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        vm = MobileDataTableViewModel(MobileDataRepositoryMock())
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testTransform() {
+    func testTransformSuccess() {
+        vm = MobileDataTableViewModel(MobileDataRepositorySuccessMock())
         let output = vm.transform(input: nil)
         let expectation = XCTestExpectation(description: "Start Test")
         output.mobileDataItems.observe(on: self) { [weak self] data in
@@ -36,6 +42,18 @@ class MobileDataTableViewModelTest: XCTestCase {
             XCTAssertEqual(data[0].volume, MockMobileData.volume.description)
             expectation.fulfill()
         }
+        wait(for: [expectation], timeout: 10.0)
+    }
+    
+    func testTransformFailed() {
+        vm = MobileDataTableViewModel(MobileDataRepositoryFailedMock())
+        let expectation = XCTestExpectation(description: "Start Test")
+        let output = vm.transform(input: nil)
+        output.mobileDataItems.observe(on: self) { [weak self] data in
+            XCTAssertTrue(data.count == 0)
+            expectation.fulfill()
+        }
+//        sleep(10)
         wait(for: [expectation], timeout: 10.0)
     }
 }

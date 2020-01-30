@@ -22,6 +22,7 @@ class MobileDataTableItemCell: UITableViewCell {
     
     func initialize() {
         btnDropped.setImage(UIImage(named:"decrease.png"), for: .normal)
+        btnDropped.accessibilityIdentifier = "button-decreasing"
         btnDropped.contentMode = .scaleAspectFit
         btnDropped.addTarget(self, action: #selector(droppedButtonAction(_:)), for: .touchDown)
         contentView.addSubview(btnDropped)
